@@ -8,11 +8,13 @@ import javax.script.*;
 public class Main {
 
     public static void main(String[] args) /*throws ScriptException*/{
-Scanner ab = new Scanner(System.in);
+
+        Scanner ab = new Scanner(System.in);
+        System.out.println("Input an expression");
+        String expression = ab.nextLine();
 
 
 
-        String expression = "(A && B) || A";
         expression = expression.replace(" ", "");
         expression = expression.replaceAll("&&", "*");
         expression = expression.replaceAll("\\|\\|", "+");
@@ -22,6 +24,7 @@ Scanner ab = new Scanner(System.in);
         expression = expression.replaceAll("B", "1");
         expression = expression.replaceAll("A", "1");
         expression = expression.replaceAll("B", "1");
+
 
         System.out.println(expression);
 
@@ -33,6 +36,11 @@ Scanner ab = new Scanner(System.in);
             Object result = engine.eval(expression);
 
             System.out.println(result);
+            if(result.equals(0) ){
+                System.out.println("False");
+            }else if (result.equals(1) || result.equals(2) || result.equals(3)){
+                System.out.println("True");
+            }
         }
         catch (ScriptException e) {
             // Something went wrong
